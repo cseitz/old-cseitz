@@ -6,6 +6,8 @@ I'm a full-stack developer with 8 years of freelance experience.
 
 WIP
 
+<img align="left" width="26px" src="https://raw.githubusercontent.com/github/explore/master/topics/nodejs/nodejs.png">
+
 <!--
 **cseitz/cseitz** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
