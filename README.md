@@ -1,4 +1,10 @@
+### Hey, I'm Chris Seitz
 
+I'm a full-stack developer with 8 years of freelance experience.
+
+## Title
+
+WIP
 
 <!--
 **cseitz/cseitz** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
