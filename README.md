@@ -23,6 +23,8 @@ Funny enough, my name is actually pronounced "Sites". I guess I was made for thi
 [<img align="left" alt="MySQL" width="26px" src="https://raw.githubusercontent.com/github/explore/master/topics/mysql/mysql.png">][Link_MySQL]
 
 
+#### ...and more that I haven't added icons for yet.
+
 
 
 [Link_Atom]: https://atom.io
@@ -39,9 +41,6 @@ Funny enough, my name is actually pronounced "Sites". I guess I was made for thi
 [Link_RaspberryPi]: https://www.raspberrypi.org/
 [Link_MongoDB]: https://www.mongodb.com/
 [Link_MySQL]: https://www.mysql.com/
-
-
-... and more that I haven't added icons for yet.
 
 <!--
 **cseitz/cseitz** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
