@@ -2,6 +2,8 @@
 
 I'm a full-stack web developer with 8 years of freelance experience.
 
+Funny enough, my name is actually pronounced "Sites". I guess I was made for this..?
+
 omg
 
 ## Title
