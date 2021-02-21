@@ -4,11 +4,7 @@ I'm a full-stack web developer with 8 years of freelance experience.
 
 Funny enough, my name is actually pronounced "Sites". I guess I was made for this..?
 
-omg
-
-## Title
-
-WIP
+## Skills
 
 [<img align="left" alt="Atom" width="26px" src="https://raw.githubusercontent.com/github/explore/master/topics/atom/atom.png">][Link_Atom]
 [<img align="left" alt="Vue" width="26px" src="https://raw.githubusercontent.com/github/explore/master/topics/nodejs/nodejs.png">][Link_Vue]
@@ -43,6 +39,9 @@ WIP
 [Link_RaspberryPi]: https://www.raspberrypi.org/
 [Link_MongoDB]: https://www.mongodb.com/
 [Link_MySQL]: https://www.mysql.com/
+
+
+... and more that I haven't added icons for yet.
 
 <!--
 **cseitz/cseitz** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
