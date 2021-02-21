@@ -23,9 +23,6 @@ Funny enough, my name is actually pronounced "Sites". I guess I was made for thi
 [<img align="left" alt="MySQL" width="26px" src="https://raw.githubusercontent.com/github/explore/master/topics/mysql/mysql.png">][Link_MySQL]
 
 
-### ...and more that I haven't added icons for yet.
-
-
 
 [Link_Atom]: https://atom.io
 [Link_Vue]: https://vuejs.org
