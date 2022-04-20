@@ -1,6 +1,5 @@
 {
     "vsicons.associations.folders": [
-        { "icon": "docs", "extensions": ["resume"] },
         { "icon": "app", "extensions": ["web"] },
     ],
     "vsicons.associations.files": [
