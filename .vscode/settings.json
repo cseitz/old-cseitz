@@ -1,0 +1,25 @@
+{
+    "vsicons.associations.folders": [
+        { "icon": "docs", "extensions": ["resume"] },
+        { "icon": "app", "extensions": ["web"] },
+    ],
+    "vsicons.associations.files": [
+        { "icon": "nginx", "extensions": ["template"] }
+    ],
+    "files.associations": {
+        "**/nginx/**/*.template": "nginx",
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/node_modules": true,
+        "**/package-lock.json": true,
+        "**/yarn.lock": true,
+        "**/.next": true,
+        "**/next-env.d.ts": true,
+    }
+}
