@@ -1,8 +1,9 @@
 import { Box } from '@mui/material';
+import { Page } from 'ui/components/page';
 
 
 export default function() {
-    return <Box>
+    return <Page>
         Cover Letter
-    </Box>
+    </Page>
 }
