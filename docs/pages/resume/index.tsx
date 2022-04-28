@@ -1,5 +1,6 @@
 import { GitHub, Home, LinkedIn, Mail, Phone } from '@mui/icons-material';
 import { Box, Chip, Divider, Grid, Link, Typography } from '@mui/material';
+import { isArray } from 'lodash';
 import { Page } from 'ui/components/page';
 
 
@@ -109,6 +110,23 @@ function Education() {
     const place = 'Kent State University, Kent, Ohio';
     const gpa = '3.78';
     const when = 'Fall 2022';
+    const classes: string[][] = [
+        [
+            'Software Engineering',
+            'Operating Systems',
+            'Data Structures',
+        ],
+        [
+            'Game Engine Concepts',
+            'Cryptology',
+            'Web Programming'
+        ],
+        [
+            'Cloud Systems Computing',
+            'Algorithms',
+            'Calculus II',
+        ]
+    ]
     return <Section title="Academics">
         <Grid container>
             <Grid item xs={9.5}>
@@ -126,14 +144,70 @@ function Education() {
             </Grid>
         </Grid>
 
-
+        <Typography sx={{ mt: 0.5, /*ml: 0.5*/ }}>
+            {classes.map(entries => (
+                <Typography variant='caption'>
+                    <div dangerouslySetInnerHTML={{ __html: entries.join('	&ndash; ') }} />
+                </Typography>
+            ))}
+        </Typography>
 
     </Section>
 }
 
 function Experience() {
+    const experiences: {
+        title: string
+        subtitle: string
+        when: string[] | string
+        href?: string,
+        about?: string,
+    }[] = [
+            {
+                title: 'Cloud Infrastructure Administrator',
+                subtitle: 'Hyland Software, Co-Op',
+                when: ['May 2021', 'Aug 2021'], //'Summer 2021',
+                href: 'https://hyland.com',
+                about: `Designed software to automatically document and generate reports on Hyland's R&D virtual environments through VMWare vSphere API.`,
+            },
+            {
+                title: 'President & Development Lead',
+                subtitle: 'HacKSU, Kent Hack Enough',
+                when: ['May 2020', 'Apr 2022'],
+                href: 'https://hacksu.com',
+                about: `Student Club President of HacKSU, Kent State University's computer science club. 
+                Facilitated club processes, organized annual hackathon, lead website development, hosted instructional events every tuesday at club meetings.`
+            }
+        ]
     return <Section title="Experience">
-        work experience
+        {experiences.map(entry => {
+            const { title, subtitle, when, href, about } = entry;
+            const result = <Grid container sx={{ mb: 1 }}>
+                <Grid item xs={7.35}>
+                    <Typography>{title}</Typography>
+                </Grid>
+                <Grid item xs={12 - 7.35} sx={{ textAlign: 'right', pr: 1.5 }}>
+                    <Typography variant="subtitle2" sx={{ textAlign: 'right', lineHeight: '24px' }}>
+                        <div dangerouslySetInnerHTML={{ __html: isArray(when) ? when.join('	&ndash; ') : when }} />
+                    </Typography>
+                </Grid>
+                <Grid item xs={7}>
+                    {href ? <Link href={href} sx={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Typography variant="subtitle2">{subtitle}</Typography>
+                    </Link> : <Typography variant="subtitle2">{subtitle}</Typography>}
+                </Grid>
+                <Grid item xs={12 - 7} sx={{ textAlign: 'right', pr: 1.5 }}>
+
+                </Grid>
+                {about && <Grid item xs={12} sx={{ /*pl: 0.5,*/ pr: 1.5, pt: 0.5, lineHeight: '12px' }}>
+                    <Typography variant="caption" sx={{}}>{about}</Typography>
+                </Grid>}
+            </Grid>
+            // if (href) return <Link href={href}>
+            //     {result}
+            // </Link>;
+            return result;
+        })}
     </Section>
 }
 
@@ -159,31 +233,37 @@ function Skills() {
     const sections: {
         [key: string]: [
             string,
-            string[]
+            string[],
+            string,
         ][]
     } = {
         'Programming Languages': [
-            ['TypeScript', colors.cyan],
-            ['JavaScript', colors.yellow],
-            ['HTML5', colors.orange],
-            ['CSS', colors.blue],
-            ['Sass', colors.pink],
-            ['Lua', colors.indigo],
-            ['C++', colors.blue],
+            ['TypeScript', colors.cyan, 'https://www.typescriptlang.org/'],
+            ['JavaScript', colors.yellow, 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'],
+            ['HTML5', colors.orange, 'https://developer.mozilla.org/en-US/docs/Glossary/HTML5'],
+            ['CSS', colors.blue, 'https://developer.mozilla.org/en-US/docs/Web/CSS'],
+            ['Sass', colors.pink, 'https://sass-lang.com/'],
+            ['Lua', colors.indigo, 'https://www.lua.org/'],
+            ['C++', colors.blue, 'https://www.cplusplus.com/'],
         ],
         'Software & Frameworks': [
-            ['React', colors.cyan],
-            ['Vue', colors.green],
-            ['Electron', colors.grey],
-            ['Git', colors.orange],
-            ['AWS', colors.yellow],
-            ['MongoDB', colors.green],
-            ['MySQL', colors.blue],
-            ['NGINX', colors.green],
-            ['Linux', colors.orange],
-
+            ['React', colors.cyan, 'https://reactjs.org/'],
+            ['Vue', colors.green, 'https://vuejs.org/'],
+            ['Electron', colors.grey, 'https://www.electronjs.org/'],
+            ['Git', colors.orange, 'https://git-scm.com/'],
+            ['AWS', colors.yellow, 'https://aws.amazon.com/'],
+            ['MongoDB', colors.green, 'https://www.mongodb.com/'],
+            ['MySQL', colors.blue, 'https://www.mysql.com/'],
+            ['NGINX', colors.green, 'https://www.nginx.com/'],
+            ['Linux', colors.orange, 'https://ubuntu.com/'],
         ],
+        'Experience': [
+            ['Website Design', colors.green, 'https://cseitz.dev'],
+            ['Cloud Servers', colors.yellow, 'https://digitalocean.com'],
+            ['Project Management', colors.pink, 'https://github.com/cseitz/capstone'],
+        ]
     }
+    const doLinks = true;
     const hexToRgb = hex =>
         hex.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i
             , (m, r, g, b) => '#' + r + r + g + g + b + b)
@@ -193,8 +273,14 @@ function Skills() {
         {Object.entries(sections).map(([title, items]) => <Box key={title} sx={{ mb: 2 }}>
             <Typography variant='subtitle2' sx={{ mb: 0.5, pl: 0.5 }}>{title}</Typography>
             <Grid container>
-                {items.map(([name, [backgroundColor, color]]) => (
-                    <Chip label={name} sx={{ backgroundColor: 'rgba(' + [...hexToRgb(backgroundColor), 0.25].join(', ') + ')', color, m: 0.23, fontWeight: 200 }} />
+                {items.map(([name, [backgroundColor, color], href]) => (
+                    <Chip label={name} sx={{
+                        backgroundColor: 'rgba(' + [...hexToRgb(backgroundColor), 0.25].join(', ') + ')',
+                        color,
+                        m: 0.23,
+                        fontWeight: 200,
+                        cursor: doLinks ? 'pointer' : undefined,
+                    }} component={doLinks ? 'a' : undefined} href={doLinks ? href : undefined} />
                 ))}
             </Grid>
         </Box>)}
