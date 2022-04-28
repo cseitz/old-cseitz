@@ -1,8 +1,10 @@
 import { GitHub, Home, LinkedIn, Mail, Phone } from '@mui/icons-material';
-import { Box, Chip, Divider, Grid, Link, Typography } from '@mui/material';
+import { Box, Button, Chip, Divider, Grid, Link, Typography } from '@mui/material';
 import { isArray } from 'lodash';
 import { Page } from 'ui/components/page';
 
+
+const website = 'https://cseitz.dev';
 
 export default function Resume() {
     return <Page sx={{}}>
@@ -19,7 +21,9 @@ function Header() {
     if (variant == 1)
         return <Grid container sx={{ mb: 1 }}>
             <Grid item xs={6}>
-                <Typography variant="h4">{name}</Typography>
+                <Link href={website} sx={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Typography variant="h4">{name}</Typography>
+                </Link>
                 <Link href={"mailto:" + email} style={{ textDecoration: 'none' }}>
                     <Typography variant='h6'>{email}</Typography>
                 </Link>
@@ -100,8 +104,24 @@ function Section(props: {
 
 
 function About() {
+    const about = [
+        `Hello! I'm a jack-of-all-trades programmer, web developer, and aspiring solutions architect.` + ' ' +
+        `I started coding around early middle school by building games on roblox.com. Since then I've racked up experience in many different languages, tools, frameworks, and more!`,
+        /*`I prefer to build projects using React, TypeScript, and Next.js; always using MongoDB as my database of choice.
+        Nevertheless, I've used tons of different technologies over the years and my preferences are always changing!`*/
+        /*`I specialize in being able to tackle whatever needs to get done. No matter what hurdles are in the way, 
+        I'll find a way to get it done efficiently while navigating around any obstacles.`*/
+
+    ]
     return <Section title="About">
-        about me
+        {about.map((content, i) => <Box key={i} sx={{ mb: 1 }} component={i == about.length - 1 ? 'span' : undefined}>
+            <Typography variant='subtitle2' component={"span"}>{content.trim()}</Typography>
+        </Box>)}
+        <Typography variant="subtitle2" component="span">
+            <Link href="https://linkedin.com/in/seitzc" sx={{ textDecoration: 'none', color: 'inherit', pl: 2 }}>
+                <Button endIcon={<LinkedIn />} sx={{ p: 0, m: 0, textTransform: 'none', mt: '-3px' }}>Read more on LinkedIn</Button>
+            </Link>
+        </Typography>
     </Section>
 }
 
@@ -237,14 +257,11 @@ function Skills() {
             string,
         ][]
     } = {
-        'Programming Languages': [
-            ['TypeScript', colors.cyan, 'https://www.typescriptlang.org/'],
-            ['JavaScript', colors.yellow, 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'],
-            ['HTML5', colors.orange, 'https://developer.mozilla.org/en-US/docs/Glossary/HTML5'],
-            ['CSS', colors.blue, 'https://developer.mozilla.org/en-US/docs/Web/CSS'],
-            ['Sass', colors.pink, 'https://sass-lang.com/'],
-            ['Lua', colors.indigo, 'https://www.lua.org/'],
-            ['C++', colors.blue, 'https://www.cplusplus.com/'],
+        'Experience': [
+            ['Website Design', colors.green, website],
+            ['Cloud Servers', colors.yellow, 'https://digitalocean.com'],
+            ['Project Management', colors.pink, 'https://github.com/cseitz/capstone'],
+            ['Virtualization', colors.blue, 'https://docker.com'],
         ],
         'Software & Frameworks': [
             ['React', colors.cyan, 'https://reactjs.org/'],
@@ -257,11 +274,15 @@ function Skills() {
             ['NGINX', colors.green, 'https://www.nginx.com/'],
             ['Linux', colors.orange, 'https://ubuntu.com/'],
         ],
-        'Experience': [
-            ['Website Design', colors.green, 'https://cseitz.dev'],
-            ['Cloud Servers', colors.yellow, 'https://digitalocean.com'],
-            ['Project Management', colors.pink, 'https://github.com/cseitz/capstone'],
-        ]
+        'Programming Languages': [
+            ['TypeScript', colors.cyan, 'https://www.typescriptlang.org/'],
+            ['JavaScript', colors.yellow, 'https://developer.mozilla.org/en-US/docs/Web/JavaScript'],
+            ['HTML5', colors.orange, 'https://developer.mozilla.org/en-US/docs/Glossary/HTML5'],
+            ['CSS', colors.blue, 'https://developer.mozilla.org/en-US/docs/Web/CSS'],
+            ['Sass', colors.pink, 'https://sass-lang.com/'],
+            ['Lua', colors.indigo, 'https://www.lua.org/'],
+            ['C++', colors.blue, 'https://www.cplusplus.com/'],
+        ],
     }
     const doLinks = true;
     const hexToRgb = hex =>
