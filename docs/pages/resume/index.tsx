@@ -5,6 +5,7 @@ import { Page } from 'ui/components/page';
 
 
 const website = 'https://cseitz.dev';
+const portfolio = website + '/portfolios';
 
 export default function Resume() {
     return <Page sx={{}}>
@@ -78,6 +79,7 @@ function Body() {
         </Grid>
         <Grid item xs={12 - median} sx={{ pl: 1 }}>
             <About />
+            <Awards />
             <Skills />
         </Grid>
     </Grid>
@@ -128,7 +130,7 @@ function About() {
 function Education() {
     const degree = 'Bachelors of Science, Computer Science';
     const place = 'Kent State University, Kent, Ohio';
-    const gpa = '3.78';
+    const gpa = 'Magna Cum Laude'; //'3.78';
     const when = 'Fall 2022';
     const classes: string[][] = [
         [
@@ -155,11 +157,10 @@ function Education() {
             <Grid item xs={2.5} sx={{ textAlign: 'right', pr: 1.5 }}>
                 <Typography variant='subtitle2' sx={{ lineHeight: '24px' }}>{when}</Typography>
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={7}>
                 <Typography variant='subtitle2'>{place}</Typography>
             </Grid>
-            <Grid item xs={4} sx={{ textAlign: 'right', pr: 1.5 }}>
-
+            <Grid item xs={5} sx={{ textAlign: 'right', pr: 1.5, mt: '-2px' }}>
                 <Typography variant='caption'>{gpa} GPA</Typography>
             </Grid>
         </Grid>
@@ -232,8 +233,64 @@ function Experience() {
 }
 
 function Projects() {
+    const projects: {
+        title: string
+        subtitle?: string
+        about?: string
+        href?: string
+        when: string
+    }[] = [
+            {
+                title: 'Capstone Project',
+                when: 'May 2022',
+                href: 'https://github.com/cseitz/capstone',
+                about: `Description`
+            },
+            {
+                title: 'Software Engineering Project',
+                when: 'May 2021',
+                href: 'https://github.com/cseitz/SoftwareEngineering-Team-TGMGPA',
+                about: `Description`
+            },
+            {
+                title: 'HacKSU Website',
+                when: 'May 2021',
+                href: `${portfolio}/hacksu/2021/`, //'https://github.com/hacksu/hacksu-2021',
+                about: `Designed and developed to replace the previous website.
+                Built using Vue.JS and hosted on the DigitalOcean cloud.`
+            },
+            {
+                title: 'Kent Hack Enough',
+                when: 'Oct 2020',
+                href: `${portfolio}/khe/2020/`,
+                about: `Description`
+            },
+        ];
     return <Section title="Projects">
-        some projects
+        {projects.map(entry => {
+            const { title, subtitle, about, href, when } = entry;
+
+            const result = <Grid container>
+                <Grid item xs={8}>
+                    <Typography>{title}</Typography>
+                </Grid>
+                <Grid item xs={12 - 8} sx={{ textAlign: 'right', pr: 1.5 }}>
+                    <Typography variant="subtitle2">{when}</Typography>
+                </Grid>
+                {subtitle && <Grid item xs={12}>
+                    <Typography variant="subtitle2">{subtitle}</Typography>
+                </Grid>}
+            </Grid>;
+
+            return <Box sx={{ mb: 1 }}>
+                {href ? <Link href={href} sx={{ textDecoration: 'none', color: 'inherit' }}>
+                    {result}
+                </Link> : result}
+                {about && <Box sx={{ pr: 1.5, pt: 0.5, lineHeight: '12px' }}>
+                    <Typography variant="caption">{about}</Typography>
+                </Box>}
+            </Box>
+        })}
     </Section>
 }
 
@@ -308,3 +365,55 @@ function Skills() {
     </Section>
 }
 
+
+function Awards() {
+    const awards: {
+        title: string;
+        when: string;
+        subtitle?: string;
+    }[] = [
+        {
+            title: 'Honors College Scholar',
+            subtitle: 'Kent State University',
+            when: '2019 - 2022'
+        },
+        {
+            title: 'Choose Ohio First',
+            subtitle: 'Academic Scholarship',
+            when: '2020 - 2022'
+        },
+        {
+            title: 'Outstanding Presentation',
+            subtitle: 'Choose Ohio First',
+            when: '2021 & 2022'
+        },
+        /*{
+            title: 'SkillsUSA State Champion',
+            subtitle: 'Website Design, High School',
+            when: '2018 & 2019'
+        },*/
+        {
+            title: 'SkillsUSA National Finalist',
+            subtitle: '4th Place, Website Design',
+            when: '2018 & 2019'
+        }
+    ]
+    return <Section title="Honors & Awards">
+        {awards.map(award => {
+            const { title, subtitle, when } = award;
+            return <Grid container sx={{ mb: 1 }}>
+                <Grid item xs={8}>
+                    <Typography variant="subtitle2">{title}</Typography>
+                </Grid>
+                <Grid item xs={12 - 8} sx={{ textAlign: 'right', lineHeight: '24px' }}>
+                    <Typography variant="subtitle2" sx={{ pr: 1.5 }}>
+                        <div dangerouslySetInnerHTML={{ __html: when.split('-').join('&ndash;') }} />
+                    </Typography>
+                </Grid>
+                <Grid item xs={12} sx={{ pt: 0, lineHeight: '12px' }}>
+                    <Typography variant="caption">{subtitle}</Typography>
+                </Grid>
+            </Grid>
+        })}
+    </Section>
+}
