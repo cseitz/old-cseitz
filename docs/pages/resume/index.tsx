@@ -1,4 +1,4 @@
-import { GitHub, Home, LinkedIn, Mail, Phone } from '@mui/icons-material';
+import { BusinessCenter, GitHub, Home, LinkedIn, Mail, Phone, Public } from '@mui/icons-material';
 import { Box, Button, Chip, Divider, Grid, Link, Typography } from '@mui/material';
 import { isArray } from 'lodash';
 import { Page } from 'ui/components/page';
@@ -20,7 +20,7 @@ function Header() {
     const email = 'cseitz.work@gmail.com';
     const variant: number = 1;
     if (variant == 1)
-        return <Grid container sx={{ mb: 1 }}>
+        return <Grid container sx={{ mb: 1, mt: -2 }}>
             <Grid item xs={6}>
                 <Link href={website} sx={{ textDecoration: 'none', color: 'inherit' }}>
                     <Typography variant="h4">{name}</Typography>
@@ -81,6 +81,19 @@ function Body() {
             <About />
             <Awards />
             <Skills />
+            <Box sx={{ mt: 3 }}>
+                <Typography sx={{ textAlign: 'center' }}>
+                    <Link href="https://cseitz.dev/portfolio" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Button endIcon={<BusinessCenter />} sx={{ px: 2, m: 0, textTransform: 'none' }}>View Portfolio</Button>
+                    </Link>
+                </Typography>
+                <Typography sx={{ textAlign: 'center' }}>
+                    <Link href="https://cseitz.dev" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Button endIcon={<Public />} sx={{ px: 2, m: 0, textTransform: 'none' }}>View Personal Website</Button>
+                    </Link>
+                </Typography>
+
+            </Box>
         </Grid>
     </Grid>
 }
@@ -130,7 +143,7 @@ function About() {
 function Education() {
     const degree = 'Bachelors of Science, Computer Science';
     const place = 'Kent State University, Kent, Ohio';
-    const gpa = 'Magna Cum Laude'; //'3.78';
+    const gpa = '3.78'; //'Magna Cum Laude'; //'3.78';
     const when = 'Fall 2022';
     const classes: string[][] = [
         [
@@ -244,13 +257,18 @@ function Projects() {
                 title: 'Capstone Project',
                 when: 'May 2022',
                 href: 'https://github.com/cseitz/capstone',
-                about: `Description`
+                about: `Lead team project on developing unique software to implement features as per stakeholder request.
+                Documented project with diagrams and detailed writeups, ensured all deadlines were met,
+                assigned tasks to team members, assisted team members in completion of tasks,
+                performed code reviews, facilitated nearly all group processes.`
             },
             {
                 title: 'Software Engineering Project',
                 when: 'May 2021',
                 href: 'https://github.com/cseitz/SoftwareEngineering-Team-TGMGPA',
-                about: `Description`
+                about: `Lead team project as Scrum Master. 
+                Implemented capabilities as per instructor request by allocating work via the Scrum process.
+                Hosted on AWS Lightsail.`
             },
             {
                 title: 'HacKSU Website',
@@ -263,7 +281,9 @@ function Projects() {
                 title: 'Kent Hack Enough',
                 when: 'Oct 2020',
                 href: `${portfolio}/khe/2020/`,
-                about: `Description`
+                about: `Designed and implemented major stylistic changes for KHE 2020 as per the event's theme.
+                Maintained application throughout the event. Ensured all event processes were completed successfully.
+                Hosted opening and closing ceremonies. Facilitated project judging.`
             },
         ];
     return <Section title="Projects">
@@ -372,32 +392,32 @@ function Awards() {
         when: string;
         subtitle?: string;
     }[] = [
-        {
-            title: 'Honors College Scholar',
-            subtitle: 'Kent State University',
-            when: '2019 - 2022'
-        },
-        {
-            title: 'Choose Ohio First',
-            subtitle: 'Academic Scholarship',
-            when: '2020 - 2022'
-        },
-        {
-            title: 'Outstanding Presentation',
-            subtitle: 'Choose Ohio First',
-            when: '2021 & 2022'
-        },
-        /*{
-            title: 'SkillsUSA State Champion',
-            subtitle: 'Website Design, High School',
-            when: '2018 & 2019'
-        },*/
-        {
-            title: 'SkillsUSA National Finalist',
-            subtitle: '4th Place, Website Design',
-            when: '2018 & 2019'
-        }
-    ]
+            {
+                title: 'Honors College Scholar',
+                subtitle: 'Kent State University',
+                when: '2019 - 2022'
+            },
+            {
+                title: 'Choose Ohio First',
+                subtitle: 'Academic Scholarship',
+                when: '2020 - 2022'
+            },
+            {
+                title: 'Outstanding Presentation',
+                subtitle: 'Choose Ohio First',
+                when: '2021 & 2022'
+            },
+            /*{
+                title: 'SkillsUSA State Champion',
+                subtitle: 'Website Design, High School',
+                when: '2018 & 2019'
+            },*/
+            {
+                title: 'SkillsUSA National Finalist',
+                subtitle: '4th Place, Website Design',
+                when: '2018 & 2019'
+            }
+        ]
     return <Section title="Honors & Awards">
         {awards.map(award => {
             const { title, subtitle, when } = award;
