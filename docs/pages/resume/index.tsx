@@ -73,9 +73,9 @@ function Body() {
     const median = 7;
     return <Grid container>
         <Grid item xs={median} sx={{ pr: 1 }}>
-            <Education />
-            <Experience />
-            <Projects />
+            <Education key={'education'} />
+            <Experience key={'experience'} />
+            <Projects key={'projects'} />
         </Grid>
         <Grid item xs={12 - median} sx={{ pl: 1 }}>
             <About />
@@ -129,10 +129,10 @@ function About() {
 
     ]
     return <Section title="About">
-        {about.map((content, i) => <Box key={i} sx={{ mb: 1 }} component={i == about.length - 1 ? 'span' : undefined}>
-            <Typography variant='subtitle2' component={"span"}>{content.trim()}</Typography>
+        {about.map((content, i) => <Box key={content} sx={{ mb: 1 }} component={i == about.length - 1 ? 'span' : undefined}>
+            <Typography variant='subtitle2' component={"span"} key={content}>{content.trim()}</Typography>
         </Box>)}
-        <Typography variant="subtitle2" component="span">
+        <Typography variant="subtitle2" component="span" key={'title'}>
             <Link href="https://linkedin.com/in/seitzc" sx={{ textDecoration: 'none', color: 'inherit', pl: 2 }}>
                 <Button endIcon={<LinkedIn />} sx={{ p: 0, m: 0, textTransform: 'none', mt: '-3px' }}>Read more on LinkedIn</Button>
             </Link>
@@ -143,7 +143,7 @@ function About() {
 function Education() {
     const degree = 'Bachelors of Science, Computer Science';
     const place = 'Kent State University, Kent, Ohio';
-    const gpa = '3.78'; //'Magna Cum Laude'; //'3.78';
+    const gpa = '3.82'; //'Magna Cum Laude'; //'3.78';
     const when = 'Fall 2022';
     const classes: string[][] = [
         [
@@ -180,7 +180,7 @@ function Education() {
 
         <Typography sx={{ mt: 0.5, /*ml: 0.5*/ }}>
             {classes.map(entries => (
-                <Typography variant='caption'>
+                <Typography variant='caption' key={entries.join(' ')}>
                     <div dangerouslySetInnerHTML={{ __html: entries.join('	&ndash; ') }} />
                 </Typography>
             ))}
@@ -198,8 +198,15 @@ function Experience() {
         about?: string,
     }[] = [
             {
+                title: 'Full-Stack Developer',
+                subtitle: 'Pocket Worlds - Everskies',
+                when: ['May 2022', 'Present'],
+                href: 'https://www.pocketworlds.com/',
+                about: `Implemented website and mobile app features on an Angular frontend, PHP backend, and a Flutter mobile app.`
+            },
+            {
                 title: 'Cloud Infrastructure Administrator',
-                subtitle: 'Hyland Software, Co-Op',
+                subtitle: 'Hyland Software, Summer Co-Op',
                 when: ['May 2021', 'Aug 2021'], //'Summer 2021',
                 href: 'https://hyland.com',
                 about: `Designed software to automatically document and generate reports on Hyland's R&D virtual environments through VMWare vSphere API.`,
@@ -216,7 +223,7 @@ function Experience() {
     return <Section title="Experience">
         {experiences.map(entry => {
             const { title, subtitle, when, href, about } = entry;
-            const result = <Grid container sx={{ mb: 1 }}>
+            const result = <Grid container key={title} sx={{ mb: 1 }}>
                 <Grid item xs={7.35}>
                     <Typography>{title}</Typography>
                 </Grid>
@@ -277,20 +284,20 @@ function Projects() {
                 about: `Designed and developed to replace the previous website.
                 Built using Vue.JS and hosted on the DigitalOcean cloud.`
             },
-            {
-                title: 'Kent Hack Enough',
-                when: 'Oct 2020',
-                href: `${portfolio}/khe/2020/`,
-                about: `Designed and implemented major stylistic changes for KHE 2020 as per the event's theme.
-                Maintained application throughout the event. Ensured all event processes were completed successfully.
-                Hosted opening and closing ceremonies. Facilitated project judging.`
-            },
+            // {
+            //     title: 'Kent Hack Enough',
+            //     when: 'Oct 2020',
+            //     href: `${portfolio}/khe/2020/`,
+            //     about: `Designed and implemented major stylistic changes for KHE 2020 as per the event's theme.
+            //     Maintained application throughout the event. Ensured all event processes were completed successfully.
+            //     Hosted opening and closing ceremonies. Facilitated project judging.`
+            // },
         ];
     return <Section title="Projects">
         {projects.map(entry => {
             const { title, subtitle, about, href, when } = entry;
 
-            const result = <Grid container>
+            const result = <Grid container key={title}>
                 <Grid item xs={8}>
                     <Typography>{title}</Typography>
                 </Grid>
@@ -372,7 +379,7 @@ function Skills() {
             <Typography variant='subtitle2' sx={{ mb: 0.5, pl: 0.5 }}>{title}</Typography>
             <Grid container>
                 {items.map(([name, [backgroundColor, color], href]) => (
-                    <Chip label={name} sx={{
+                    <Chip label={name} key={name} sx={{
                         backgroundColor: 'rgba(' + [...hexToRgb(backgroundColor), 0.25].join(', ') + ')',
                         color,
                         m: 0.23,
@@ -421,7 +428,7 @@ function Awards() {
     return <Section title="Honors & Awards">
         {awards.map(award => {
             const { title, subtitle, when } = award;
-            return <Grid container sx={{ mb: 1 }}>
+            return <Grid container key={title} sx={{ mb: 1 }}>
                 <Grid item xs={8}>
                     <Typography variant="subtitle2">{title}</Typography>
                 </Grid>
